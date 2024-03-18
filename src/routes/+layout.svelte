@@ -1,48 +1,53 @@
-<nav>
-    <div class="nav-container">
-        <a href="/" class="nav-logo" title="Back to HomePage">Главная страница</a>
-        <div class="nav-links">
-            {#each nav as link}
-                {#if link.isShow}
-                    <a href={link.href} class="link">{link.title}</a>
-                {/if}
-            {/each}
-        </div>
-    </div>
-</nav>
-
-<div class="container">
-    <slot></slot>
-</div>
-
 <script>
-    export let nav = [
-        {
-            title: 'Функции',
-            href: '/about',
-            isShow: true
-        },
-        {
-            title: 'Статьи',
-            href: '/blog',
-            isShow: true
-        },
-        {
-            title: 'Проекты',
-            href: '/project',
-            isShow: true
-        },
-        {
-            title: 'Контакты',
-            href: '/contact',
-            isShow: false
-        }
-    ]
+	import Header from './Header.svelte';
+	import './styles.css';
 </script>
 
+<div class="app">
+	<Header />
+
+	<main>
+		<slot />
+	</main>
+
+	<footer>
+		<p>&copy; <a href="https://slavachernyshov.netlify.app">Copyright</a> Чернышов В.Е 2024</p>
+	</footer>
+</div>
+
 <style>
-    .container {
-        max-width: 1400px;
-        margin: 50px auto;
-    }
+	.app {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+
+	main {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		padding: 1rem;
+		width: 100%;
+		max-width: 64rem;
+		margin: 0 auto;
+		box-sizing: border-box;
+	}
+
+	footer {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 12px;
+	}
+
+	footer a {
+		font-weight: bold;
+	}
+
+	@media (min-width: 480px) {
+		footer {
+			padding: 12px 0;
+		}
+	}
 </style>
